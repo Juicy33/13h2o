@@ -1,0 +1,25 @@
+{
+  "name": "13h2o-ver1.08b",
+  "version": "1.0.8b",
+  "description": "gamble is illegal",
+  "main": "main.js",
+  "scripts": {
+    "test": "hello",
+    "start": "electron .",
+    "dist": "electron-builder --win --x64"
+  },
+  "keywords": [],
+  "author": "Juicy33",
+  "license": "ISC",
+  "devDependencies": {
+    "electron-prebuilt": "^1.4.13"
+  },
+  "build": {
+    "appId": "com.juicy.13water",
+    "win": {
+      "target": ["nsis","zip"]
+    }
+
+
+  }}
+

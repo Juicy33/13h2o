@@ -1,0 +1,60 @@
+/*
+* Support css styles,
+* for background and text
+*
+*
+*
+*
+*/
+
+
+
+
+@import url('https://fonts.googleapis.com/css?family=Big+Shoulders+Text&display');
+
+body {
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#0e0701+0,3e2100+44,0e0701+100 */
+    background: #0e0701;
+    /* Old browsers */
+    background: -moz-linear-gradient(left, #0e0701 0%, #3e2100 44%, #0e0701 100%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, #0e0701 0%, #3e2100 44%, #0e0701 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, #0e0701 0%, #3e2100 44%, #0e0701 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0e0701', endColorstr='#0e0701', GradientType=1);
+    /* IE6-9 */
+
+}
+
+body,
+* {
+    padding: 0;
+    margin: 0;
+    overflow:hidden;
+}
+
+h3 {
+    /* font-family: 'Staatliches', cursive; */
+    font-size: 30px;
+    color: #ffffff;
+    font-family: 'Big Shoulders Text', cursive;
+}
+
+h5 {
+    color: #f69999;
+    font-family: 'Big Shoulders Text', cursive;
+}
+
+.attribute {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 500px;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: -1;
+
+}

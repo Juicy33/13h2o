@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>福建十三水</title>
+    <embed src="login.mp3" hidden="true" autostart="true" loop="true">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script type="text/javascript" src="vector.js"></script>
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <style>
+        .button1 {
+            -webkit-transition-duration: 0.4s;
+            transition-duration: 0.4s;
+            padding: 16px 32px;
+            text-align: center;
+            background-color: white;
+            color: black;
+            border: 2px solid #4CAF50;
+            border-radius:5px;
+        }
+        .button1:hover {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .checkbox01 input[type=checkbox] + label::before {
+            content: "\a0";
+            display: inline-block;
+            vertical-align: 2px;
+            width: 14px;
+            height: 14px;
+            margin-right: 5px;
+            border-radius: 3px;
+            background-color: #261c19;
+            text-indent: 2px;
+            line-height: .65;
+        }
+        .checkbox01 input[type="checkbox"]:checked + label::before {
+            content: "\2713";
+            background-color: #f07000;
+        }
+        .checkbox01 input[type='checkbox'] {
+
+            position: absolute;
+            clip: rect(0, 0, 0, 0);
+
+        }
+    </style>
+</head>
+<body>
+<div id="container"class="bg">
+    <div id="output">
+        <div class="containerT">
+            <form role="form" methods="post" id="reg_form">
+                <div class="form-group">
+
+                    <input type="text" name="username" class="form-control" required id="name" placeholder="用户名">
+                </div>
+                <div class="form-group">
+
+                    <input type="password" name="password" class="form-control" required id="password" placeholder="密码">
+                </div>
+                <div class="form-group">
+
+                    <input type="text" name="student_number" class="form-control" required id="student_number" placeholder="教务处学号">
+                </div>
+                <div class="form-group">
+
+                    <input type="password" name="student_password" class="form-control" required id="student_password" placeholder="教务处密码">
+                </div>
+                <button type="button"  class="button1" onclick="register()">注册</button>
+                <button type="button"  class="button1" onclick="back()">返回</button>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    $(function(){
+        Victor("container", "output");   //登录背景函数
+        $("#entry_name").focus();
+        $(document).keydown(function(event){
+            if(event.keyCode==13){
+                $("#entry_btn").click();
+            }
+        });
+    })
+
+    function register() {
+        var reg_data = ($('#reg_form').serializeJson());
+        if (reg_data.username == undefined || reg_data.password == undefined) {
+            alert("用户名或密码不能为空");
+            return;
+        } else
+        if (reg_data.student_number == undefined || reg_data.student_password == undefined) {
+            alert("教务处学号或密码不能为空");
+            return
+        }
+        console.log(JSON.stringify(reg_data));
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: "http://api.revth.com/auth/register2",
+            data: JSON.stringify(reg_data), //提交的数据
+            contentType: "application/json;charset-UTF-8",
+            success: function (result) { //todo
+                console.log(result);
+                if (result.status == 0) {
+                    $('<div>').appendTo('body').addClass('alert alert-success').html('注册成功').show().delay(1500).fadeOut();
+                    window.location.href = 'index.html'
+                };
+            },
+            error: function () {
+                alert("注册失败");
+
+            }
+        });
+    }
+    (function($){
+        $.fn.serializeJson=function(){
+            var serializeObj={};
+            var array=this.serializeArray();
+            var str=this.serialize();
+            $(array).each(function(){
+                if(serializeObj[this.name]){
+                    if($.isArray(serializeObj[this.name])&&this .value!=""){
+                        serializeObj[this.name].push(this.value);
+                    }else {
+                        if(this .value!=""){
+                            serializeObj[this.name]=[serializeObj[this.name],this.value];
+                        }
+                    }
+                }else{
+                    if(this .value!=""){
+                        serializeObj[this.name]=this.value;
+                    }
+                }
+            });
+            return serializeObj;
+        };
+    })(jQuery);
+    function back() {window.location.href = 'index.html'}
+
+</script>
+</body>
+</html>
